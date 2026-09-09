@@ -1,0 +1,203 @@
+@{
+    ViewData["Title"] = "Analysis Results";
+    var jobId = ViewBag.JobId as string ?? "";
+}
+
+<div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <div>
+            <h2 class="fw-semibold mb-0" style="color:#1e3a5f;">Analysis Results</h2>
+            <small class="text-muted">Job ID: <code>@jobId</code></small>
+        </div>
+        <div>
+            <a href="/Log/Upload" class="btn btn-outline-secondary btn-sm me-2">Upload Another</a>
+            <a id="btnExcel" href="/api/loganalysis/export/@jobId" class="btn btn-success btn-sm d-none">
+                Download Excel
+            </a>
+        </div>
+    </div>
+
+    <!-- Status banner -->
+    <div id="statusBanner" class="alert alert-info d-flex align-items-center gap-2">
+        <div class="spinner-border spinner-border-sm" role="status"></div>
+        <span>Analyzing log file&hellip; please wait.</span>
+    </div>
+
+    <!-- Summary cards (hidden until done) -->
+    <div id="summaryRow" class="row g-3 mb-4 d-none">
+        <div class="col-6 col-md-3">
+            <div class="card border-0 bg-light text-center p-3">
+                <div class="fs-3 fw-bold text-primary" id="statTotal">0</div>
+                <div class="text-muted small">Total Lines</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card border-0 bg-light text-center p-3">
+                <div class="fs-3 fw-bold text-danger" id="statErrors">0</div>
+                <div class="text-muted small">Errors Found</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card border-0 bg-light text-center p-3">
+                <div class="fs-3 fw-bold text-warning" id="statCritical">0</div>
+                <div class="text-muted small">Critical / High</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card border-0 bg-light text-center p-3">
+                <div class="fs-3 fw-bold text-success" id="statCategories">0</div>
+                <div class="text-muted small">Categories</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results table (hidden until done) -->
+    <div id="resultsSection" class="d-none">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+            <h5 class="mb-0 fw-semibold">Error Entries</h5>
+            <input id="searchBox" type="text" class="form-control form-control-sm w-auto"
+                   placeholder="Filter entries..." style="min-width:200px;" />
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm align-middle" id="resultsTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Timestamp</th>
+                        <th>Error Code</th>
+                        <th>Severity</th>
+                        <th>Category</th>
+                        <th>Root Cause</th>
+                        <th>Solution</th>
+                        <th>Recommended Action</th>
+                        <th>Error Line</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JSON view -->
+    <div id="jsonSection" class="d-none mt-4">
+        <h5 class="fw-semibold mb-2">Raw JSON Output</h5>
+        <pre id="jsonOutput" class="bg-light border rounded p-3"
+             style="max-height:400px;overflow:auto;font-size:12px;"></pre>
+    </div>
+</div>
+
+<style>
+    .severity-critical { background-color: #fee2e2 !important; }
+    .severity-high     { background-color: #ffedd5 !important; }
+    .severity-medium   { background-color: #fef9c3 !important; }
+    .severity-low      { background-color: #dcfce7 !important; }
+    .badge-critical { background:#dc2626; }
+    .badge-high     { background:#ea580c; }
+    .badge-medium   { background:#ca8a04; }
+    .badge-low      { background:#16a34a; }
+    pre { white-space: pre-wrap; word-break: break-word; }
+</style>
+
+<script>
+(function () {
+    const jobId   = '@jobId';
+    const pollUrl = `/api/loganalysis/result/${jobId}`;
+    let attempts  = 0;
+    const maxWait = 60; // seconds
+
+    function severityClass(s) {
+        switch ((s || '').toLowerCase()) {
+            case 'critical': return 'severity-critical';
+            case 'high':     return 'severity-high';
+            case 'medium':   return 'severity-medium';
+            default:         return 'severity-low';
+        }
+    }
+    function badgeClass(s) {
+        switch ((s || '').toLowerCase()) {
+            case 'critical': return 'badge-critical';
+            case 'high':     return 'badge-high';
+            case 'medium':   return 'badge-medium';
+            default:         return 'badge-low';
+        }
+    }
+
+    function renderResults(data) {
+        // Summary
+        document.getElementById('statTotal').textContent     = data.totalLines;
+        document.getElementById('statErrors').textContent    = data.totalErrors;
+        const critHigh = (data.severitySummary['Critical'] || 0) + (data.severitySummary['High'] || 0);
+        document.getElementById('statCritical').textContent  = critHigh;
+        document.getElementById('statCategories').textContent = Object.keys(data.categorySummary || {}).length;
+
+        document.getElementById('summaryRow').classList.remove('d-none');
+        document.getElementById('resultsSection').classList.remove('d-none');
+        document.getElementById('jsonSection').classList.remove('d-none');
+        document.getElementById('btnExcel').classList.remove('d-none');
+
+        // Table
+        const tbody = document.getElementById('resultsBody');
+        tbody.innerHTML = '';
+        (data.errors || []).forEach((e, i) => {
+            const tr = document.createElement('tr');
+            tr.className = severityClass(e.severity);
+            tr.innerHTML = `
+                <td class="text-muted">${i + 1}</td>
+                <td><small>${e.timestamp || '—'}</small></td>
+                <td><code>${e.errorCode}</code></td>
+                <td><span class="badge ${badgeClass(e.severity)}">${e.severity}</span></td>
+                <td>${e.category}</td>
+                <td>${e.rootCause}</td>
+                <td>${e.solution}</td>
+                <td>${e.recommendedAction}</td>
+                <td><small class="text-muted" title="${e.errorLine}">${(e.errorLine || '').substring(0, 80)}${e.errorLine && e.errorLine.length > 80 ? '…' : ''}</small></td>`;
+            tbody.appendChild(tr);
+        });
+
+        // JSON
+        document.getElementById('jsonOutput').textContent = JSON.stringify(data, null, 2);
+
+        // Status
+        const banner = document.getElementById('statusBanner');
+        if (data.totalErrors === 0) {
+            banner.className = 'alert alert-success';
+            banner.innerHTML = '<strong>Analysis complete.</strong> No errors detected in the log file.';
+        } else {
+            banner.className = 'alert alert-warning';
+            banner.innerHTML = `<strong>Analysis complete.</strong> Found <strong>${data.totalErrors}</strong> error(s) in <strong>${data.totalLines}</strong> lines.`;
+        }
+    }
+
+    function poll() {
+        fetch(pollUrl)
+            .then(r => {
+                if (r.status === 200) return r.json().then(renderResults);
+                if (r.status === 202) {
+                    attempts++;
+                    if (attempts < maxWait) setTimeout(poll, 2000);
+                    else {
+                        document.getElementById('statusBanner').className = 'alert alert-danger';
+                        document.getElementById('statusBanner').textContent = 'Processing timed out. Please try again.';
+                    }
+                }
+            })
+            .catch(() => {
+                attempts++;
+                if (attempts < maxWait) setTimeout(poll, 2000);
+            });
+    }
+
+    // Filter
+    document.addEventListener('DOMContentLoaded', function () {
+        const box = document.getElementById('searchBox');
+        box.addEventListener('input', function () {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll('#resultsBody tr').forEach(tr => {
+                tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
+            });
+        });
+        poll();
+    });
+})();
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — LOG Analyzer</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous" />
+    <style>
+        body { background: #f7f8fa; font-family: -apple-system, "Segoe UI", system-ui, sans-serif; }
+        .navbar-brand { font-weight: 700; letter-spacing: -0.3px; }
+        footer { font-size: 12px; color: #57606a; border-top: 1px solid #e5e7eb;
+                 text-align: center; padding: 16px 0 12px; margin-top: 48px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background:#1e3a5f;">
+        <div class="container">
+            <a class="navbar-brand" href="/Log/Upload">
+                LOG Analyzer
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link text-white-50" href="/Log/Upload">Upload</a>
+                <a class="nav-link text-white-50" href="/swagger" target="_blank">API Docs</a>
+            </div>
+        </div>
+    </nav>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="container">
+            Made with IBM Bob &mdash; LOG Analyzer &copy; @DateTime.Now.Year
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmTnEXpEcPMoGKHNqXFBRqVLLsF"
+            crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,15 @@
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\bin\Debug\net8.0\LOGAnalyzer.Infrastructure.deps.json
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\bin\Debug\net8.0\LOGAnalyzer.Infrastructure.dll
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\bin\Debug\net8.0\LOGAnalyzer.Infrastructure.pdb
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\bin\Debug\net8.0\LOGAnalyzer.Core.dll
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\bin\Debug\net8.0\LOGAnalyzer.Core.pdb
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\LOGAnalyzer.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\LOGAnalyzer.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\LOGAnalyzer.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\LOGAnalyzer.Infrastructure.AssemblyInfo.cs
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\LOGAnalyzer.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\LOGAnaly.4084B96F.Up2Date
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\LOGAnalyzer.Infrastructure.dll
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\refint\LOGAnalyzer.Infrastructure.dll
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\LOGAnalyzer.Infrastructure.pdb
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Infrastructure\obj\Debug\net8.0\ref\LOGAnalyzer.Infrastructure.dll

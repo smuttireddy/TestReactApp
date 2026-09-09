@@ -1,0 +1,50 @@
+[
+  {
+    "ContainingType": "LOGAnalyzer.API.Controllers.LogAnalysisApiController",
+    "Method": "Export",
+    "RelativePath": "api/loganalysis/export/{jobId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "jobId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LOGAnalyzer.API.Controllers.LogAnalysisApiController",
+    "Method": "GetResult",
+    "RelativePath": "api/loganalysis/result/{jobId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "jobId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LOGAnalyzer.API.Controllers.LogAnalysisApiController",
+    "Method": "Upload",
+    "RelativePath": "api/loganalysis/upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,11 @@
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\obj\Debug\net8.0\LOGAnalyzer.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\obj\Debug\net8.0\LOGAnalyzer.Core.AssemblyInfoInputs.cache
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\obj\Debug\net8.0\LOGAnalyzer.Core.AssemblyInfo.cs
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\obj\Debug\net8.0\LOGAnalyzer.Core.csproj.CoreCompileInputs.cache
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\bin\Debug\net8.0\LOGAnalyzer.Core.deps.json
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\bin\Debug\net8.0\LOGAnalyzer.Core.dll
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\bin\Debug\net8.0\LOGAnalyzer.Core.pdb
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\obj\Debug\net8.0\LOGAnalyzer.Core.dll
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\obj\Debug\net8.0\refint\LOGAnalyzer.Core.dll
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\obj\Debug\net8.0\LOGAnalyzer.Core.pdb
+C:\Users\MuttireddySwathi\Documents\BOBPractice\Firsttest\LOGAnalyzer\LOGAnalyzer.Core\obj\Debug\net8.0\ref\LOGAnalyzer.Core.dll
